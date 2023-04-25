@@ -11,40 +11,44 @@
  */
 int _printf(const char *format, ...)
 {
-int count = 0;
-int i = 0;
-va_list args;
-va_start(args, format);
-for (; format[i] != '\0'; i++)
+va_list narg;
+int out = 0;
+va_start(narg, format);
+while (*format != '\0')
 {
-if (format[i] == '%') 
+if (*format == '%')
 {
-i++;
-if (format[i] == 'c') 
+format++;
+switch (*format)
 {
-char c = (char)va_arg(args, int);
-write(1, &c, 1);
-count++;
-}
-else if (format[i] == 's')
+case 'c':
+out += _putchar(va_arg(narg, int));
+break;
+case 's':
 {
-char *s = va_arg(args, char*);
-int len = strlen(s);
-write(1, s, len);
-count += len;
+char *str = va_arg(narg, char *);
+int slen = strlen(str);
+out += write(1, str, slen);
+break;
 }
-else if (format[i] == '%')
+case '%':
+_putchar('%');
+out++;
+break;
+default:
+_putchar('%');
+_putchar(*format);
+out += 2;
+break;
+}
+}
+else
 {
-char c = '%';
-write(1, &c, 1);
-count++;
+_putchar(*format);
+out++;
 }
+format++;
 }
-else {
-write(1, &format[i], 1);
-count++;
-}
-}
-va_end(args);
-return (count);
+va_end(narg);
+return (out);
 }
