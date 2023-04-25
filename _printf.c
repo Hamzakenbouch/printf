@@ -7,21 +7,18 @@
  * _printf - prints output according to a format
  * @format: the format string
  * @...: additional arguments
- * Return: the number of characters printed (excluding the null byte used to end output to strings)
+ * Return: the number of characters printed
  */
 int _printf(const char *format, ...)
 {
 va_list narg;
 int out = 0;
-
 va_start(narg, format);
-
 while (*format != '\0')
 {
 if (*format == '%')
 {
 format++;
-
 switch (*format)
 {
 case 'c':
@@ -38,7 +35,6 @@ case '%':
 _putchar('%');
 out++;
 break;
-
 default:
 _putchar('%');
 _putchar(*format);
@@ -53,8 +49,6 @@ out++;
 }
 format++;
 }
-
 va_end(narg);
-
 return (out);
 }
