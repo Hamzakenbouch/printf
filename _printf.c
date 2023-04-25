@@ -14,6 +14,10 @@ int _printf(const char *format, ...)
 va_list narg;
 int out = 0;
 va_start(narg, format);
+if (formt = NULL)
+{
+return (-1);
+}
 while (*format != '\0')
 {
 if (*format == '%')
