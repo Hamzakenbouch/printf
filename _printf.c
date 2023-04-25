@@ -9,50 +9,45 @@
  */
 int _printf(const char *format, ...)
 {
-va_list narg;
-int out = 0;
-va_start(narg, format);
-while (*format != '\0')
+va_list ap;
+int written = 0;
+char buf[1024] = {0};
+int len = 0;
+va_start(ap, format);
+while (*format)
 {
 if (*format == '%')
 {
 format++;
-switch (*format)
+if (*format == 'c')
 {
-case 'c':
-{
-char c = (char)va_arg(narg, int);
-write(1, &c, 1);
-out++;
-break;
+int c = va_arg(ap, int);
+buf[len++] = c;
 }
-case 's':
+else if (*format == 's')
 {
-char *str = va_arg(narg, char *);
+char *str = va_arg(ap, char*);
 int slen = strlen(str);
-write(1, str, slen);
-out += slen;
-break;
+strncpy(buf + len, str, slen);
+len += slen;
 }
-case '%':
-write(1, "%", 1);
-out++;
-break;
-default:
-write(1, "%", 1);
-write(1, &(*format), 1);
-out += 2;
-break;
-
+else if (*format == '%')
+{
+buf[len++] = '%';
+}
+else
+{
+buf[len++] = '%';
+buf[len++] = *format;
 }
 }
 else
 {
-write(1, &(*format), 1);
-out++;
+buf[len++] = *format;
 }
 format++;
 }
-va_end(narg);
-return (out);
+va_end(ap);
+written = write(1, buf, len);
+return (written);
 }
