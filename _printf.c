@@ -9,6 +9,21 @@
  * @...: additional arguments
  * Return: the number of characters printed
  */
+
+void spec_d_i(int i, int *p) 
+{
+char *str = (char*) malloc(sizeof(char) * 12); 
+if (str == NULL) {
+return;
+}
+
+intToChar(i, str);
+int slend = strlen(str);
+*p = write(1, str, slend);
+
+free(str);
+}
+
 int _printf(const char *format, ...)
 {
 va_list narg;
@@ -37,6 +52,16 @@ int slen = strlen(str);
 out += write(1, str, slen);
 break;
 }
+case 'd':
+spec_d_i((va_arg(narg, int)), outdi);
+out += *outdi;
+break;
+
+case 'i':
+spec_d_i((va_arg(narg, int)), outdi);
+out += *outdi;
+break;
+
 case '%':
 _putchar('%');
 out++;
