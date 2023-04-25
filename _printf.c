@@ -10,25 +10,14 @@
  * Return: the number of characters printed
  */
 
-void spec_d_i(int i, int *p) 
-{
-char *str = (char*) malloc(sizeof(char) * 12); 
-if (str == NULL) {
-return;
-}
-
-intToChar(i, str);
-int slend = strlen(str);
-*p = write(1, str, slend);
-
-free(str);
-}
-
 int _printf(const char *format, ...)
 {
 va_list narg;
 int out = 0;
+int outdi_val;
+int *outdi = &outdi_val; 
 va_start(narg, format);
+
 
 if (format == NULL)
 {

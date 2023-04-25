@@ -39,6 +39,8 @@ struct fmt
  */
 typedef struct fmt fmt_t;
 
+void intToChar(int num, char* str);
+void spec_d_i(int i, int *p);
 int _putchar(char c);
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
