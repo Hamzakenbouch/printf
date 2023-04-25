@@ -38,6 +38,12 @@ case '%':
 write(1, "%", 1);
 out++;
 break;
+default:
+write(1, "%", 1);
+write(1, &(*format), 1);
+out += 2;
+break;
+
 }
 }
 else
