@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 va_list narg;
 int out = 0;
 va_start(narg, format);
-if (formt = NULL)
+if (format == NULL)
 {
 return (-1);
 }
