@@ -1,8 +1,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <string.h>
-#include <stdlib.h>
-#include "main.h"
 /**
  * _printf - prints output according to a format
  * @format: the format string
@@ -22,29 +20,29 @@ format++;
 switch (*format)
 {
 case 'c':
-out += _putchar(va_arg(narg, int));
+{
+char c = (char)va_arg(narg, int);
+write(1, &c, 1);
+out++;
 break;
+}
 case 's':
 {
 char *str = va_arg(narg, char *);
 int slen = strlen(str);
-out += write(1, str, slen);
+write(1, str, slen);
+out += slen;
 break;
 }
 case '%':
-_putchar('%');
+write(1, "%", 1);
 out++;
-break;
-default:
-_putchar('%');
-_putchar(*format);
-out += 2;
 break;
 }
 }
 else
 {
-_putchar(*format);
+write(1, &(*format), 1);
 out++;
 }
 format++;
