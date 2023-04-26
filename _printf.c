@@ -55,3 +55,23 @@ case '%':
 _putchar('%');
 out++;
 break;
+
+default:
+_putchar('%');
+_putchar(*format);
+out += 2;
+break;
+}
+}
+else
+{
+_putchar(*format);
+out++;
+}
+format++;
+}
+
+va_end(narg);
+
+return (out);
+}
