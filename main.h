@@ -8,9 +8,9 @@
 #define BUFF_SIZE 1024
 
 
-int _putchar(char c)
-void intToChar(int num, char* str)
-void spec_d_i(i, p)
+int _putchar(char c);
+void intToChar(int num, char* str);
+void spec_d_i(i, p);
 
 
 #endif
