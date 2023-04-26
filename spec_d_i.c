@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "main.h"
-void spec_d_i(i, p)
+void spec_d_i(int i, int *p);
 int i, *p;
 {
     char *str;

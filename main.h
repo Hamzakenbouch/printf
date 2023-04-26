@@ -10,7 +10,7 @@
 
 int _putchar(char c);
 void intToChar(int num, char* str);
-void spec_d_i(i, p);
+void spec_d_i(int i, int *p);
 
 
 #endif
