@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include "main.h"
 void spec_d_i(int i, int *p);
-int i, *p;
 {
     char *str;
     int slend;
